@@ -1,5 +1,5 @@
 <div class="container">
-  <form>
+  <form #formCadLancamento="ngForm" >
      <div class="ui-g">
       <div class="ui-g-12">
         <h1>Novo Lançamento</h1>
@@ -21,8 +21,15 @@
       </div>
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
-        <label>Descrição</label>
-        <input pInputText type="text">
+        <label>Descrição {{descricao.errors | json}}</label>
+        <input pInputText type="text" name="descricao"
+        ngModel #descricao="ngModel" required minlength="5">
+
+        <app-message [control]="descricao" error="required"
+           text="Informe uma descrção."></app-message>
+
+        <app-message [control]="descricao" error="minlength"
+           text="Mínimo de {{ descricao.errors?.minlength?.requiredL}}."></app-message>
       </div>
 
       <div class="ui-g-12 ui-md-3 ui-fluid">
@@ -47,8 +54,9 @@
         <textarea pInputTextarea ></textarea>
       </div>
     <div class="ui-g-12">
-       <button style="margin-right: 15px;" pButton type="submit" label="Salvar"></button>
-       <button style="margin-right: 15px;" pButton type="submit" label="Novo" class="ui-button-info"></button>
+       <button style="margin-right: 15px;" pButton type="submit" label="Salvar"
+       [disabled]="!formCadLancamento.valid"></button>
+       <button style="margin-right: 15px;" pButton type="button" label="Novo" class="ui-button-info"></button>
        <a href="javascript:;">Voltar para pesquisa...</a>
       </div>
 

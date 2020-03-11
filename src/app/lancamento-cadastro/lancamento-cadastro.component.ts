@@ -21,9 +21,4 @@ export class LancamentoCadastroComponent  {
      { label: 'Maria Abadia', value: 3 },
    ];
 
-
-
-
-
-
 }
