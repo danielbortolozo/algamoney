@@ -1,0 +1,72 @@
+
+<div class="container">
+  <div class="ui-g">
+
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
+      <div class="ui-g-12">
+          <h1>Lançamentos</h1>
+        </div>
+
+        <div class="ui-g-12 ui-fluid">
+          <label>Descrição</label>
+          <input pInputText type="text" name="descricao" [(ngModel)]="filtro.descricao"/>
+        </div>
+        <div class="ui-g-12">
+          <label style="display: block;">Vencimento</label>
+          <p-calendar dateFormat="yy/mm/dd" [inline]="false" name="vencimentoInicio" [(ngModel)]="filtro.dataVencimentoInicio"
+          [readonlyInput]="false" [showIcon]="true" [inputStyle]="{ width: '100px' }"></p-calendar>
+
+          <label>até</label>
+          <p-calendar dateFormat="dd/mm/yy" [inline]="false" name="vencimentoFim" [(ngModel)]="filtro.dataVencimentoFim"
+          [readonlyInput]="false" [showIcon]="true" [inputStyle]="{ width: '100px' }"></p-calendar>
+
+        </div>
+        <div class="ui-g-12">
+             <button pButton type="submit" label="Pesquisar"></button>
+        </div>
+        </form>
+    </div>
+    <div class="ui-g">
+      <div class="ui-g-12" >
+
+<p-table [value]="lancamentos" [responsive]="true" [paginator]="true" [rows]="filtro.itensPorPagina"
+         (onLazyLoad)="aoMudarPagina($event)" [lazy]="true" [totalRecords]="totalRegistros" >
+  <ng-template pTemplate="header">
+   <tr>
+     <th>Pessoa</th>
+     <th>Descrição</th>
+     <th>Data Vencimento</th>
+     <th>Data Pagamento</th>
+     <th>Valor</th>
+     <th style="width: 120px;">Ações</th>
+
+   </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-lancamento>
+    <tr>
+       <td>{{lancamento.pessoa.nome}}</td>
+       <td>{{lancamento.descricao}}</td>
+       <td style="width: 120px; text-align: center;">{{lancamento.dataVencimento | date: 'dd/MM/yyyy'}}</td>
+       <td style="width: 120px; text-align: center;">{{lancamento.dataPagamento | date: 'dd/MM/yyyy'}}</td>
+       <td style="width: 120px; text-align: right;"><span [ngStyle]="{ color: lancamento.tipo === 'DESPESA' ? 'red' : 'blue'}">{{lancamento.valor | currency}}</span></td>
+       <!-- <td><button pButton type="submit" label="Editar"></button> -->
+       <td >
+            <button pButton type="button" icon="pi pi-pencil" iconPos="left" pTooltip="Editar" tooltipPosition="top"></button>
+            <button style="margin-left: 5px;" pButton type="button" icon="pi pi-trash" iconPos="left" pTooltip="Excluir" tooltipPosition="top"></button>
+       </td>
+
+      </tr>
+  </ng-template>
+</p-table>
+
+      </div>
+
+      <div class="ui-g-12">
+         <a pButton label="Novo Lançamento"></a>
+      </div>
+
+    </div>
+
+
+  </div>
+

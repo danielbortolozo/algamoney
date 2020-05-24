@@ -16,6 +16,7 @@ export class PessoasPesquisaComponent  {
     {nome: 'Rodrigo Scavone',  cidade: 'São João Das Duas Pontes', estado: 'SP', status: 'Inativo'},
     {nome: 'Willia Sanaiotte Rocca',  cidade: 'São José do Rio Preto', estado: 'SP', status: 'Ativo'},
     {nome: 'Nelson Rocca',  cidade: 'São José do Rio Preto', estado: 'SP', status: 'Inativo'}
+
   ];
 
 

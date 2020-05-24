@@ -10,10 +10,13 @@
         <label>Nome</label>
 
         <input pInputText type="text" name="nome"
-        ngModel #nome="ngModel" required >
+        ngModel #nome="ngModel" required minlength="5" >
 
         <app-message [control]="nome" error="required"
         text="Informe o nome da pessoa."></app-message>
+        <app-message [control]="nome" error="minlength"
+        text="Mínimo de {{ nome.errors?.minlength?.requiredLength}} caracters."></app-message>
+
       </div>
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
@@ -30,6 +33,7 @@
         <label>Número</label>
         <input pInputText type="text" name="numero"
                ngModel #numero="ngModel" required >
+
         <app-message [control]="numero" error="required"
                text="Informe o número."></app-message>
       </div>
@@ -43,6 +47,7 @@
         <label>Bairro</label>
         <input pInputText type="text" name="bairro"
                ngModel #bairro="ngModel" required >
+
         <app-message [control]="bairro" error="required"
                text="Informe o bairro."></app-message>
       </div>
@@ -66,9 +71,6 @@
         <label>Estado</label>
         <input pInputText type="text">
       </div>
-
-
-
 
     <div class="ui-g-12">
        <button style="margin-right: 15px;" pButton type="submit" label="Salvar"></button>
