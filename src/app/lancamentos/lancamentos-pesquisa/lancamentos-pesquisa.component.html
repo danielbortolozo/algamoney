@@ -13,7 +13,7 @@
         </div>
         <div class="ui-g-12">
           <label style="display: block;">Vencimento</label>
-          <p-calendar dateFormat="yy/mm/dd" [inline]="false" name="vencimentoInicio" [(ngModel)]="filtro.dataVencimentoInicio"
+          <p-calendar dateFormat="dd/mm/yy" [inline]="false" name="vencimentoInicio" [(ngModel)]="filtro.dataVencimentoInicio"
           [readonlyInput]="false" [showIcon]="true" [inputStyle]="{ width: '100px' }"></p-calendar>
 
           <label>até</label>
@@ -22,7 +22,8 @@
 
         </div>
         <div class="ui-g-12">
-             <button pButton type="submit" label="Pesquisar"></button>
+             <button pButton type="button" label="Limpar Pesquisa" (click)="limparCampos()"></button>
+             <button pButton type="submit" label="Pesquisar" class="button"></button>
         </div>
         </form>
     </div>
@@ -30,7 +31,7 @@
       <div class="ui-g-12" >
 
 <p-table [value]="lancamentos" [responsive]="true" [paginator]="true" [rows]="filtro.itensPorPagina"
-         (onLazyLoad)="aoMudarPagina($event)" [lazy]="true" [totalRecords]="totalRegistros" >
+         (onLazyLoad)="aoMudarPagina($event)" [lazy]="true" [totalRecords]="totalRegistros" #tabela >
   <ng-template pTemplate="header">
    <tr>
      <th>Pessoa</th>
@@ -52,7 +53,8 @@
        <!-- <td><button pButton type="submit" label="Editar"></button> -->
        <td >
             <button pButton type="button" icon="pi pi-pencil" iconPos="left" pTooltip="Editar" tooltipPosition="top"></button>
-            <button style="margin-left: 5px;" pButton type="button" icon="pi pi-trash" iconPos="left" pTooltip="Excluir" tooltipPosition="top"></button>
+            <button style="margin-left: 5px;" pButton type="button" icon="pi pi-trash" iconPos="left"
+                    pTooltip="Excluir" tooltipPosition="top" (click)="confirmarExclusao(lancamento)"></button>
        </td>
 
       </tr>

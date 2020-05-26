@@ -1,20 +1,25 @@
 <div class="container">
   <div class="ui-g">
-    <div class="ui-g-12">
-      <h1>Pessoas</h1>
-    </div>
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
+      <div class="ui-g-12">
+        <h1>Pessoas</h1>
+      </div>
 
-    <div class="ui-g-12 ui-fluid">
-      <label>Nome</label>
-      <input pInputText type="text" />
-    </div>
-    <div class="ui-g-12">
-      <button pButton type="submit" label="Pesquisar"></button>
-    </div>
+      <div class="ui-g-12 ui-fluid">
+        <label>Nome</label>
+        <input pInputText type="text" name="nome" [(ngModel)]="filtro.nome" />
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+
+    </form>
   </div>
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-table [value]="pessoas" [paginator]="true" [rows]="2" [responsive]="true">
+      <p-table [value]="pessoas" [paginator]="true" [responsive]="true" [rows]="filtro.itensPorPagina"
+               (onLazyLoad)="aoMudarPagina($event)" [lazy]="true" [totalRecords]="totalRegistros">
         <ng-template pTemplate="header">
           <tr>
             <th>Codigo</th>
@@ -27,8 +32,8 @@
         <ng-template pTemplate="body" let-pessoa>
           <tr>
 
+            <td>{{pessoa.codigo}}</td>
             <td>{{pessoa.nome}}</td>
-            <td>{{pessoa.cidade}}</td>
             <td>{{pessoa.endereco.logradouro}}</td>
             <!-- <td><button pButton type="submit" label="Editar"></button> -->
             <td><button pButton type="button" icon="pi pi-pencil" iconPos="left" pTooltip="Editar"
