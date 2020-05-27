@@ -20,14 +20,10 @@ export class LancamentoService {
 
   constructor(private http: HttpClient) { }
 
-
   pesquisar(filtro: LancamentoFiltro): Promise<any> {
     // const headers = new Headers();
     // headers.append('Authorization', 'Basic skdfjdkfj');
 
-    console.log('descri :'+ filtro.descricao);
-    console.log('dtini :'+ filtro.dataVencimentoInicio);
-    console.log('dtini :'+ filtro.dataVencimentoFim);
     if (filtro.dataVencimentoInicio != null && filtro.dataVencimentoFim == null) {
       alert('Preencha o campo da data final');
       return null;
@@ -38,7 +34,6 @@ export class LancamentoService {
     }
 
     if (filtro.descricao && filtro.dataVencimentoInicio == null && filtro.dataVencimentoFim == null) {
-
       return this.http.get(`${this.lancamentosUrl}?descricao=${filtro.descricao}&page=${filtro.pagina}&size=${filtro.itensPorPagina}`)
         .toPromise()
         .then(response => {
@@ -51,56 +46,54 @@ export class LancamentoService {
           return resultado;
         });
     } else
-    if ((filtro.dataVencimentoInicio !== undefined) && (filtro.dataVencimentoFim !== undefined) &&
-       (filtro.descricao == null || filtro.descricao === "")) {
-       console.log('dtini, dtfim e descricao = null ou vazio');
-      let dtIni = moment(filtro.dataVencimentoInicio).format('YYYY-MM-DD');
-      let dtFim = moment(filtro.dataVencimentoFim).format('YYYY-MM-DD');
-      return this.http.get(`${this.lancamentosUrl}?page=${filtro.pagina}&size=${filtro.itensPorPagina}
+      if ((filtro.dataVencimentoInicio !== undefined) && (filtro.dataVencimentoFim !== undefined) &&
+        (filtro.descricao == null || filtro.descricao === '')) {
+
+        let dtIni = moment(filtro.dataVencimentoInicio).format('YYYY-MM-DD');
+        let dtFim = moment(filtro.dataVencimentoFim).format('YYYY-MM-DD');
+        return this.http.get(`${this.lancamentosUrl}?page=${filtro.pagina}&size=${filtro.itensPorPagina}
       &dataVencimentoDe=${dtIni}&dataVencimentoAte=${dtFim}`)
-        .toPromise()
-        .then(response => {
-          const responseJson = response;
-          const lancamentos = responseJson['content'];
-          const resultado = {
-            lancamentos,
-            total: responseJson['totalElements']
-          };
-          return resultado;
-        });
+          .toPromise()
+          .then(response => {
+            const responseJson = response;
+            const lancamentos = responseJson['content'];
+            const resultado = {
+              lancamentos,
+              total: responseJson['totalElements']
+            };
+            return resultado;
+          });
 
-    } else
-    if (filtro.dataVencimentoInicio && filtro.dataVencimentoFim && filtro.descricao) {
-      console.log(' dtini, dtfim, descri')
-      let dtIni = moment(filtro.dataVencimentoInicio).format('YYYY-MM-DD');
-      let dtFim = moment(filtro.dataVencimentoFim).format('YYYY-MM-DD');
-      return this.http.get(`${this.lancamentosUrl}?page=${filtro.pagina}&size=${filtro.itensPorPagina}
+      } else
+        if (filtro.dataVencimentoInicio && filtro.dataVencimentoFim && filtro.descricao) {
+          let dtIni = moment(filtro.dataVencimentoInicio).format('YYYY-MM-DD');
+          let dtFim = moment(filtro.dataVencimentoFim).format('YYYY-MM-DD');
+          return this.http.get(`${this.lancamentosUrl}?page=${filtro.pagina}&size=${filtro.itensPorPagina}
           &descricao=${filtro.descricao}&dataVencimentoDe=${dtIni}&dataVencimentoAte=${dtFim}`)
-        .toPromise()
-        .then(response => {
-          const responseJson = response;
-          const lancamentos = responseJson['content'];
-          const resultado = {
-            lancamentos,
-            total: responseJson['totalElements']
-          };
-          return resultado;
-        });
+            .toPromise()
+            .then(response => {
+              const responseJson = response;
+              const lancamentos = responseJson['content'];
+              const resultado = {
+                lancamentos,
+                total: responseJson['totalElements']
+              };
+              return resultado;
+            });
 
-    } else {
-      console.log('else >>>>>');
-      return this.http.get(`${this.lancamentosUrl}?page=${filtro.pagina}&size=${filtro.itensPorPagina}`)
-        .toPromise()
-        .then(response => {
-          const responseJson = response;
-          const lancamentos = responseJson['content'];
-          const resultado = {
-            lancamentos,
-            total: responseJson['totalElements']
-          };
-          return resultado;
-        });
-    }
+        } else {
+          return this.http.get(`${this.lancamentosUrl}?page=${filtro.pagina}&size=${filtro.itensPorPagina}`)
+            .toPromise()
+            .then(response => {
+              const responseJson = response;
+              const lancamentos = responseJson['content'];
+              const resultado = {
+                lancamentos,
+                total: responseJson['totalElements']
+              };
+              return resultado;
+            });
+        }
   }
 
   excluir(codigo: number): Promise<void> {

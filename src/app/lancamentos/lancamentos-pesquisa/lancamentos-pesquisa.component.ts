@@ -1,14 +1,19 @@
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { LancamentoService, LancamentoFiltro } from './../lancamento.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/api/public_api';
+
 import { ToastyService } from 'ng2-toasty';
+import { LazyLoadEvent } from 'primeng/api/public_api';
+import { ConfirmationService } from 'primeng/api';
 
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
   templateUrl: './lancamentos-pesquisa.component.html',
   styleUrls: ['./lancamentos-pesquisa.component.css']
+
 })
+
 export class LancamentosPesquisaComponent implements OnInit {
 
   totalRegistros = 0;
@@ -18,7 +23,9 @@ export class LancamentosPesquisaComponent implements OnInit {
 
 
   constructor(private lancamentoService: LancamentoService,
-              private toastyService: ToastyService) { }
+              private toastyService: ToastyService,
+              private confirmationService: ConfirmationService,
+              private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
     //   this.pesquisar();
@@ -26,6 +33,7 @@ export class LancamentosPesquisaComponent implements OnInit {
 
   pesquisar(pagina = 0) {
     this.filtro.pagina = pagina;
+
     this.lancamentoService.pesquisar(this.filtro)
       .then(resultado => {
         this.lancamentos = resultado['lancamentos'],
@@ -33,7 +41,8 @@ export class LancamentosPesquisaComponent implements OnInit {
           if (pagina == 0) {
             this.grade.first = 0;
           }
-      });
+      })
+      .catch(error => this.errorHandler.handle(error));
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
@@ -43,9 +52,13 @@ export class LancamentosPesquisaComponent implements OnInit {
 
   confirmarExclusao(lancamento: any) {
     this.excluir(lancamento);
-
+    this.confirmationService.confirm({
+      message: 'teste',
+      accept: () => {
+        this.excluir(lancamento);
+      }
+    });
   }
-
 
   excluir(lancamento: any) {
     this.lancamentoService.excluir(lancamento.codigo)
@@ -54,7 +67,8 @@ export class LancamentosPesquisaComponent implements OnInit {
         this.grade.first = 0;
         this.pesquisar();
         this.toastyService.success('Lancamento excluído com sucesso. Assistir aula 17.10 confirmDialog !!!');
-      });
+      })
+      .catch(error => this.errorHandler.handle(error));
   }
 
   limparCampos() {

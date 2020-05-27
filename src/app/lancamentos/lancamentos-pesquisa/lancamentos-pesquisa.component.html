@@ -49,7 +49,7 @@
        <td>{{lancamento.descricao}}</td>
        <td style="width: 120px; text-align: center;">{{lancamento.dataVencimento | date: 'dd/MM/yyyy'}}</td>
        <td style="width: 120px; text-align: center;">{{lancamento.dataPagamento | date: 'dd/MM/yyyy'}}</td>
-       <td style="width: 120px; text-align: right;"><span [ngStyle]="{ color: lancamento.tipo === 'DESPESA' ? 'red' : 'blue'}">{{lancamento.valor | currency}}</span></td>
+       <td style="width: 120px; text-align: right;"><span [ngStyle]="{ color: lancamento.tipo === 'DESPESA' ? 'red' : 'blue'}">{{lancamento.valor | currency:'BRL':'symbol':'1.1-2':'pt'}}</span></td>
        <!-- <td><button pButton type="submit" label="Editar"></button> -->
        <td >
             <button pButton type="button" icon="pi pi-pencil" iconPos="left" pTooltip="Editar" tooltipPosition="top"></button>
