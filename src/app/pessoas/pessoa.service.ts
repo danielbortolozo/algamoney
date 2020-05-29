@@ -61,20 +61,23 @@ export class PessoaService {
       .then(() => null);
   }
 
-  mudarStatus(codigo: number, ativo: boolean): Promise<void> {
+  // mudarStatus(codigo: number, ativo: boolean): Promise<void> {
 
-    if (ativo == false) {
-      ativo = true;
-    } else {
-      ativo = false;
-    }
-    return this.http.get(`${this.pessoasUrl}/${codigo}/${ativo}`)
-    .toPromise()
-    .then(() => null);
+  //   if (ativo == false) {
+  //     ativo = true;
+  //   } else {
+  //     ativo = false;
+  //   }
+  //   return this.http.put(`${this.pessoasUrl}/${codigo}/${ativo}`);
+  // }
 
+  listarTodas(): Promise<any> {
+    // const headers = new Headers();
+    // headers.append('Authorization', 'Basic skdfjdkfj');
 
+    return this.http.get(`${this.pessoasUrl}/listar`)
+        .toPromise()
+        .then(response => response);
   }
-
-
 
 }

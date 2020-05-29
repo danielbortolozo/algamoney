@@ -15,13 +15,13 @@ export class CategoriaPesquisaComponent implements OnInit {
   constructor(private categoriaService: CategoriaService) { }
 
   ngOnInit() {
-    this.pesquisar();
+    this.listarTodas();
   }
 
 
-  pesquisar() {
+  listarTodas() {
 
-     this.categoriaService.pesquisar()
+     this.categoriaService.listarTodas()
      .then(response => this.categorias = response);
   }
 

@@ -12,7 +12,7 @@ export class CategoriaService {
 
 
 
-  pesquisar(): Promise<any> {
+  listarTodas(): Promise<any> {
     // const headers = new Headers();
     // headers.append('Authorization', 'Basic skdfjdkfj');
 
