@@ -1,3 +1,4 @@
+import { CategoriaModule } from './categoria/categoria.module';
 
 import { CoreModule } from './core/core.module';
 import { PessoasModule } from './pessoas/pessoas.module';
@@ -14,17 +15,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 
+
 registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
+
     ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     LancamentosModule,
     PessoasModule,
+    CategoriaModule,
     CoreModule,
     HttpClientModule
 

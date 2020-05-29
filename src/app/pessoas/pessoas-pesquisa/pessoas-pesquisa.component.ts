@@ -1,6 +1,8 @@
 import { PessoaService, PessoaFiltro } from './../pessoa.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api/public_api';
+import { ToastyService } from 'ng2-toasty';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 @Component({
   selector: 'app-pessoas-pesquisa',
@@ -12,8 +14,11 @@ export class PessoasPesquisaComponent  implements OnInit {
   totalRegistros = 0;
   filtro = new PessoaFiltro();
   pessoas = [];
+  @ViewChild('tabela', {static: false}) grade;
 
-  constructor(private pessoaService: PessoaService) { }
+  constructor(private pessoaService: PessoaService,
+              private toastyService: ToastyService,
+              private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
    // this.pesquisar();
@@ -32,5 +37,23 @@ export class PessoasPesquisaComponent  implements OnInit {
     const pagina = event.first / event.rows;
     this.pesquisar(pagina);
   }
+
+  excluir(pessoa: any) {
+    this.pessoaService.excluir(pessoa.codigo)
+      .then(() => {
+
+        this.grade.first = 0;
+        this.pesquisar();
+        this.toastyService.success('Pessoa excluído com sucesso. Assistir aula 17.10 confirmDialog !!!');
+      })
+      .catch(error => {
+
+
+        this.errorHandler.handle(error)
+      });
+  }
+
+
+
 
 }

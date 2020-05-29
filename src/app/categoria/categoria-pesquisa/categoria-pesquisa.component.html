@@ -2,12 +2,13 @@
   <div class="ui-g">
     <form autocomplete="off" (ngSubmit)="pesquisar()">
       <div class="ui-g-12">
-        <h1>Pessoas</h1>
+        <h1>Categorias</h1>
       </div>
 
       <div class="ui-g-12 ui-fluid">
-        <label>Nome</label>
-        <input pInputText type="text" name="nome" [(ngModel)]="filtro.nome" />
+        <label>Nome categoria</label>
+        <input pInputText type="text" name="nome" />
+
       </div>
 
       <div class="ui-g-12">
@@ -18,35 +19,25 @@
   </div>
   <div class="ui-g">
     <div class="ui-g-12">
-      <p-table [value]="pessoas" [paginator]="true" [responsive]="true" [rows]="filtro.itensPorPagina"
-               (onLazyLoad)="aoMudarPagina($event)" [lazy]="true" [totalRecords]="totalRegistros" #tabela>
+      <p-table [value]="categorias" [paginator]="true" [responsive]="true" [rows]="5">
         <ng-template pTemplate="header">
           <tr>
             <th>Codigo</th>
             <th>Nome</th>
-            <th>Endereço</th>
-            <th>Status</th>
             <th style="width: 120px;">Ações</th>
 
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-pessoa>
+        <ng-template pTemplate="body" let-categoria>
           <tr>
 
-            <td>{{pessoa.codigo}}</td>
-            <td>{{pessoa.nome}}</td>
-            <td>{{pessoa.endereco.logradouro}}</td>
-
-            <td>{{pessoa.ativo  === true  ? 'Ativo' : 'Inativo'}}</td>
-
-
-              <!-- <label>{{tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento'}}</label> -->
-            <!-- <td><button pButton type="submit" label="Editar"></button> -->
+            <td>{{categoria.codigo}}</td>
+            <td>{{categoria.nome}}</td>
             <td><button pButton type="button" icon="pi pi-pencil" iconPos="left" pTooltip="Editar"
                 tooltipPosition="top"></button>
 
               <button style="margin-left: 5px;" pButton type="button" icon="pi pi-trash" iconPos="left"
-                pTooltip="Excluir" tooltipPosition="top" (click)='excluir(pessoa)'></button>
+                pTooltip="Excluir" tooltipPosition="top" ></button>
             </td>
 
           </tr>
@@ -56,7 +47,8 @@
     </div>
 
     <div class="ui-g-12">
-      <a pButton label="Nova Pessoa"></a>
+      <a pButton label="Nova Categoria"></a>
     </div>
   </div>
 </div>
+

@@ -52,7 +52,7 @@ export class LancamentoService {
         let dtIni = moment(filtro.dataVencimentoInicio).format('YYYY-MM-DD');
         let dtFim = moment(filtro.dataVencimentoFim).format('YYYY-MM-DD');
         return this.http.get(`${this.lancamentosUrl}?page=${filtro.pagina}&size=${filtro.itensPorPagina}
-      &dataVencimentoDe=${dtIni}&dataVencimentoAte=${dtFim}`)
+           &dataVencimentoDe=${dtIni}&dataVencimentoAte=${dtFim}`)
           .toPromise()
           .then(response => {
             const responseJson = response;

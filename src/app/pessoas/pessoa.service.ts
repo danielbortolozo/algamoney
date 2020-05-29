@@ -55,6 +55,26 @@ export class PessoaService {
   }
 
 
+  excluir(codigo: number): Promise<void> {
+    return this.http.delete(`${this.pessoasUrl}/${codigo}`)
+      .toPromise()
+      .then(() => null);
+  }
+
+  mudarStatus(codigo: number, ativo: boolean): Promise<void> {
+
+    if (ativo == false) {
+      ativo = true;
+    } else {
+      ativo = false;
+    }
+    return this.http.get(`${this.pessoasUrl}/${codigo}/${ativo}`)
+    .toPromise()
+    .then(() => null);
+
+
+  }
+
 
 
 }

@@ -6,6 +6,7 @@ import { ToastyModule } from 'ng2-toasty';
 import { LancamentoService } from '../lancamentos/lancamento.service';
 import { PessoaService } from '../pessoas/pessoa.service';
 import { ConfirmationService } from 'primeng/api';
+import { CategoriaService } from '../categoria/categoria.service';
 
 
 
@@ -22,7 +23,8 @@ import { ConfirmationService } from 'primeng/api';
     ErrorHandlerService,
     LancamentoService,
     PessoaService,
-    ConfirmationService
+    ConfirmationService,
+    CategoriaService
   ]
 })
 export class CoreModule { }
