@@ -104,6 +104,8 @@ export class LancamentoService {
   }
 
   adicionar(lancamento: Lancamento): Promise<Lancamento> {
+    // const headers = new Headers();
+    // headers.append('Authorization', 'Basic skdfjdkfj');
      return this.http.post(this.lancamentosUrl, lancamento)
      .toPromise()
      .then(response => lancamento);

@@ -50,9 +50,7 @@ export class LancamentoCadastroComponent implements OnInit {
   }
   salvar(form: FormControl) {
 
-    console.log('valor');
-    console.log(this.lancamento.valor);
-     this.lancamentoService.adicionar(this.lancamento)
+    this.lancamentoService.adicionar(this.lancamento)
      .then(() => {
        this.toasty.success('Lançamento adicionado com sucesso !!!');
        form.reset();

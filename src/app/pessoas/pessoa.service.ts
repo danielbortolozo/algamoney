@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Pessoa } from '../core/model';
 
 
 
@@ -79,5 +80,18 @@ export class PessoaService {
         .toPromise()
         .then(response => response);
   }
+
+  adicionar(pessoa: Pessoa): Promise<Pessoa> {
+    // const headers = new Headers();
+    // headers.append('Authorization', 'Basic skdfjdkfj');
+     return this.http.post(this.pessoasUrl, pessoa)
+     .toPromise()
+     .then(response => pessoa);
+
+  }
+
+
+
+
 
 }
