@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { NgModule } from '@angular/core';
@@ -29,7 +30,8 @@ import { InputTextModule } from 'primeng/inputtext';
     CalendarModule,
     SelectButtonModule,
     DropdownModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    RouterModule
 
   ],
   declarations: [
