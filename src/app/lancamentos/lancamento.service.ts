@@ -1,3 +1,4 @@
+import { Lancamento } from './../core/model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
@@ -102,5 +103,11 @@ export class LancamentoService {
       .then(() => null);
   }
 
+  adicionar(lancamento: Lancamento): Promise<Lancamento> {
+     return this.http.post(this.lancamentosUrl, lancamento)
+     .toPromise()
+     .then(response => lancamento);
+
+  }
 
 }
