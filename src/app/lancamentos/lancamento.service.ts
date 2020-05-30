@@ -114,7 +114,10 @@ export class LancamentoService {
   atualizar(lancamento: Lancamento): Promise<Lancamento> {
     return this.http.put(this.lancamentosUrl, lancamento.codigo)
     .toPromise()
-    .then(response => lancamento);
+    .then(response => {
+      const lancamento = response as Lancamento;
+      return lancamento;
+    });
   }
 
   buscarPorCodigo(codigo: number): Promise<any> {
