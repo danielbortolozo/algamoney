@@ -109,7 +109,40 @@ export class LancamentoService {
      return this.http.post(this.lancamentosUrl, lancamento)
      .toPromise()
      .then(response => lancamento);
-
   }
 
+  atualizar(lancamento: Lancamento): Promise<Lancamento> {
+    return this.http.put(this.lancamentosUrl, lancamento.codigo)
+    .toPromise()
+    .then(response => lancamento);
+  }
+
+  buscarPorCodigo(codigo: number): Promise<any> {
+     return this.http.get(`${this.lancamentosUrl}/${codigo}`)
+     .toPromise()
+     .then(response => {
+       const lancamento = response as Lancamento;
+      // this.converterStringsParaDatas([lancamento]);
+       return lancamento;
+     });
+  }
+
+  private converterStringsParaDatas(lancamentos: Lancamento[]){
+     //let dtIni = moment(lancamentos[].dataVencimento).parse('YYYY-MM-DD');
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -6,6 +6,7 @@ import { PessoaService } from 'src/app/pessoas/pessoa.service';
 import { FormControl } from '@angular/forms';
 import { LancamentoService } from '../lancamento.service';
 import { ToastyService } from 'ng2-toasty';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -27,14 +28,25 @@ export class LancamentoCadastroComponent implements OnInit {
               private pessoaService: PessoaService,
               private lancamentoService: LancamentoService,
               private toasty: ToastyService,
-              private errorHandler: ErrorHandlerService) {
+              private errorHandler: ErrorHandlerService,
+              private route: ActivatedRoute) {
 
   }
 
   ngOnInit() {
+    const codigoLancamento = this.route.snapshot.params['codigo'];
+
+    if (codigoLancamento) {
+       this.carregarLancamentos(codigoLancamento);
+    }
     this.carregarCategorias();
     this.carregarPessoas();
   }
+
+  get editando() {
+    return Boolean(this.lancamento.codigo);
+  }
+
   carregarCategorias() {
     return this.categoriaService.listarTodas()
       .then(categorias => {
@@ -58,5 +70,14 @@ export class LancamentoCadastroComponent implements OnInit {
      })
      .catch(erro => this.errorHandler.handle(erro));
   }
+
+  carregarLancamentos(codigo: number) {
+     this.lancamentoService.buscarPorCodigo(codigo)
+     .then(lancamento => {
+        this.lancamento = lancamento;
+     })
+     .catch(erro => this.errorHandler.handle(erro));
+  }
+
 
 }
