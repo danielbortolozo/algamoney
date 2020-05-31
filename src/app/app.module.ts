@@ -33,9 +33,6 @@ registerLocaleData(localePt);
     CoreModule,
     HttpClientModule,
     AppRoutingModule
-
-
-
   ],
   providers: [
 
