@@ -40,10 +40,7 @@ import { InputTextModule } from 'primeng/inputtext';
     PessoasPesquisaComponent,
     PessoasGridComponent
   ],
-  exports: [
-    PessoaCadastroComponent,
-    PessoasPesquisaComponent,
-  ]
+  exports: []
 
 
 })

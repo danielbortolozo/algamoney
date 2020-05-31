@@ -39,8 +39,7 @@ import { InputTextModule } from 'primeng/inputtext';
     LancamentosPesquisaComponent,
   ],
   exports: [
-    LancamentoCadastroComponent,
-    LancamentosPesquisaComponent
+
   ]
 })
 export class LancamentosModule { }

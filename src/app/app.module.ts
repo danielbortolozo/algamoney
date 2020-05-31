@@ -19,6 +19,7 @@ import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { Routes, RouterModule } from '@angular/router';
 import { LancamentoCadastroComponent } from './lancamentos/lancamento-cadastro/lancamento-cadastro.component';
+import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },
@@ -27,6 +28,8 @@ const routes: Routes = [
    { path: 'lancamentos/:codigo', component: LancamentoCadastroComponent },
    { path: 'pessoas', component: PessoasPesquisaComponent},
    { path: 'pessoas/novo', component: PessoaCadastroComponent },
+   { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },
+   { path: '**', redirectTo: 'pagina-nao-encontrada' },
 ];
 
 registerLocaleData(localePt);

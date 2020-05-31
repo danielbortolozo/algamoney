@@ -8,6 +8,7 @@ import { PessoaService } from '../pessoas/pessoa.service';
 import { ConfirmationService } from 'primeng/api';
 import { CategoriaService } from '../categoria/categoria.service';
 import { RouterModule } from '@angular/router';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 
 
 
@@ -18,7 +19,7 @@ import { RouterModule } from '@angular/router';
     RouterModule
 
   ],
-  declarations: [NavbarComponent],
+  declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
   exports: [NavbarComponent,
             ToastyModule],
   providers: [
