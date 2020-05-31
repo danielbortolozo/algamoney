@@ -108,7 +108,7 @@ export class LancamentoService {
     // headers.append('Authorization', 'Basic skdfjdkfj');
      return this.http.post(this.lancamentosUrl, lancamento)
      .toPromise()
-     .then(response => lancamento);
+     .then(response => response as Lancamento);
   }
 
   atualizar(lancamento: Lancamento): Promise<Lancamento> {
@@ -117,8 +117,6 @@ export class LancamentoService {
     .then(response => {
       const lancamentoAlterado = response as Lancamento;
       this.converterStringsParaDatas([lancamentoAlterado]);
-      console.log('lancamentoAterado: ');
-      console.log(lancamentoAlterado);
       return lancamentoAlterado;
     });
   }
@@ -134,7 +132,6 @@ export class LancamentoService {
   }
 
   private converterStringsParaDatas(lancamentos: Lancamento[]) {
-
     for (const lancamento of lancamentos) {
       lancamento.dataVencimento = moment(lancamento.dataVencimento, 'YYYY-MM-DD').toDate();
 
@@ -142,7 +139,6 @@ export class LancamentoService {
          lancamento.dataPagamento = moment(lancamento.dataPagamento, 'YYYY-MM-DD').toDate();
       }
     }
-
   }
 }
 

@@ -15,7 +15,7 @@ export class ErrorHandlerService {
     let msg: string;
 
     if (errorResponse['status'] == 400) {
-        msg = 'Operação não permitida';
+        msg = 'Operação não permitida. Error 400';
     } else
       if (errorResponse['status'] == 404) {
           msg = 'Recurso não encontrado';
