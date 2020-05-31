@@ -83,9 +83,7 @@ export class LancamentoCadastroComponent implements OnInit {
        this.router.navigate(['/lancamentos', lancamentoAdicionado.codigo]);
      })
      .catch(erro => {
-
        this.errorHandler.handle(erro);
-
     });
   }
 

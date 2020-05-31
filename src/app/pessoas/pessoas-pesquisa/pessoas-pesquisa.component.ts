@@ -1,6 +1,7 @@
 import { PessoaService, PessoaFiltro } from './../pessoa.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api/public_api';
+import { ConfirmationService } from 'primeng/api';
 import { ToastyService } from 'ng2-toasty';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
@@ -18,7 +19,8 @@ export class PessoasPesquisaComponent  implements OnInit {
 
   constructor(private pessoaService: PessoaService,
               private toastyService: ToastyService,
-              private errorHandler: ErrorHandlerService) { }
+              private errorHandler: ErrorHandlerService,
+              private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
    // this.pesquisar();
@@ -38,18 +40,28 @@ export class PessoasPesquisaComponent  implements OnInit {
     this.pesquisar(pagina);
   }
 
+  confirmarExclusao(pessoa: any) {
+    //  this.excluir(lancamento);
+      this.confirmationService.confirm({
+        message: 'Tem certeza que deseja excluir?',
+        accept: () => {
+          this.excluir(pessoa);
+        }
+      });
+    }
+
+
+
   excluir(pessoa: any) {
     this.pessoaService.excluir(pessoa.codigo)
       .then(() => {
 
         this.grade.first = 0;
         this.pesquisar();
-        this.toastyService.success('Pessoa excluído com sucesso. Assistir aula 17.10 confirmDialog !!!');
+        this.toastyService.success('Pessoa excluído com sucesso.');
       })
       .catch(error => {
-
-
-        this.errorHandler.handle(error)
+        this.errorHandler.handle(error);
       });
   }
 

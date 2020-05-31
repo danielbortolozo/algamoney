@@ -24,9 +24,7 @@ export class PessoaService {
     // const headers = new Headers();
     // headers.append('Authorization', 'Basic skdfjdkfj');
 
-
     if (filtro.nome) {
-      console.log('Enctrei no nome');
       return this.http.get(`${this.pessoasUrl}?nome=${filtro.nome}&page=${filtro.pagina}&size=${filtro.itensPorPagina}`)
         .toPromise()
         .then(response => {
@@ -69,7 +67,9 @@ export class PessoaService {
   //   } else {
   //     ativo = false;
   //   }
-  //   return this.http.put(`${this.pessoasUrl}/${codigo}/${ativo}`);
+  //   return this.http.put(`${this.pessoasUrl}/${codigo}/${ativo}`)
+  //      .toPromise()
+  //      .then(() => null);
   // }
 
   listarTodas(): Promise<any> {
