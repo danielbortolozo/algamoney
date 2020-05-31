@@ -5,6 +5,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastyService } from 'ng2-toasty';
 import { LazyLoadEvent } from 'primeng/api/public_api';
 import { ConfirmationService } from 'primeng/api';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -25,10 +26,11 @@ export class LancamentosPesquisaComponent implements OnInit {
   constructor(private lancamentoService: LancamentoService,
               private toastyService: ToastyService,
               private confirmationService: ConfirmationService,
-              private errorHandler: ErrorHandlerService) { }
+              private errorHandler: ErrorHandlerService,
+              private title: Title) { }
 
   ngOnInit() {
-    //   this.pesquisar();
+    this.title.setTitle('Pesquisa de lançamentos');
   }
 
   pesquisar(pagina = 0) {
