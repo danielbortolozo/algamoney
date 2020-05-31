@@ -60,17 +60,17 @@ export class PessoaService {
       .then(() => null);
   }
 
-  // mudarStatus(codigo: number, ativo: boolean): Promise<void> {
+  mudarStatus(codigo: number, ativo: boolean): Promise<void> {
 
-  //   if (ativo == false) {
-  //     ativo = true;
-  //   } else {
-  //     ativo = false;
-  //   }
-  //   return this.http.put(`${this.pessoasUrl}/${codigo}/${ativo}`)
-  //      .toPromise()
-  //      .then(() => null);
-  // }
+    if (ativo == false) {
+      ativo = true;
+    } else {
+      ativo = false;
+    }
+    return this.http.put(`${this.pessoasUrl}/${codigo}/${ativo}`, codigo)
+       .toPromise()
+       .then(() => null);
+  }
 
   listarTodas(): Promise<any> {
     // const headers = new Headers();
@@ -88,6 +88,24 @@ export class PessoaService {
      .toPromise()
      .then(response => pessoa);
 
+  }
+
+  atualizar(pessoa: Pessoa): Promise<Pessoa> {
+    return this.http.put(`${this.pessoasUrl}/${pessoa.codigo}`, pessoa)
+    .toPromise()
+    .then(response => {
+      const pessoaAlterado = response as Pessoa;
+      return pessoaAlterado;
+    });
+  }
+
+  buscarPorCodigo(codigo: number): Promise<any> {
+     return this.http.get(`${this.pessoasUrl}/${codigo}`)
+     .toPromise()
+     .then(response => {
+       const pessoa = response as Pessoa;
+       return pessoa;
+     });
   }
 
 

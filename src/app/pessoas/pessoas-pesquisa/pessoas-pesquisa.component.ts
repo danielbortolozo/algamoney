@@ -4,6 +4,7 @@ import { LazyLoadEvent } from 'primeng/api/public_api';
 import { ConfirmationService } from 'primeng/api';
 import { ToastyService } from 'ng2-toasty';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pessoas-pesquisa',
@@ -20,10 +21,11 @@ export class PessoasPesquisaComponent  implements OnInit {
   constructor(private pessoaService: PessoaService,
               private toastyService: ToastyService,
               private errorHandler: ErrorHandlerService,
-              private confirmationService: ConfirmationService) { }
+              private confirmationService: ConfirmationService,
+              private title: Title) { }
 
   ngOnInit() {
-   // this.pesquisar();
+    this.title.setTitle('Pesquisa de pessoas');
   }
 
   pesquisar(pagina = 0) {
@@ -41,7 +43,6 @@ export class PessoasPesquisaComponent  implements OnInit {
   }
 
   confirmarExclusao(pessoa: any) {
-    //  this.excluir(lancamento);
       this.confirmationService.confirm({
         message: 'Tem certeza que deseja excluir?',
         accept: () => {
