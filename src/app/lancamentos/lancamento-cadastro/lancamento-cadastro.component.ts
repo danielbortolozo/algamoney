@@ -82,6 +82,7 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   atualizarLancamento(form: FormControl) {
+
      this.lancamentoService.atualizar(this.lancamento)
      .then(lancamento => {
        this.lancamento = lancamento;
