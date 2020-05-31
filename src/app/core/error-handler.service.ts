@@ -13,9 +13,13 @@ export class ErrorHandlerService {
 
   handle(errorResponse: any) {
     let msg: string;
+    console.log(errorResponse);
 
     if (errorResponse['status'] == 400) {
-        msg = 'Operação não permitida. Error 400';
+         const erros: [] = errorResponse['error'];
+         for (const erro of erros) {
+            msg = erro['mensagemUsuario']+'. Error 400';
+         }
     } else
       if (errorResponse['status'] == 404) {
           msg = 'Recurso não encontrado';

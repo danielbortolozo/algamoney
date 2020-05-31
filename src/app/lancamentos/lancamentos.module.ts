@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { LancamentosRoutingModule } from './lancamento-routing.module';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
@@ -32,7 +33,8 @@ import { InputTextModule } from 'primeng/inputtext';
     SelectButtonModule,
     DropdownModule,
     CurrencyMaskModule,
-    LancamentosRoutingModule
+    LancamentosRoutingModule,
+    SharedModule
 
   ],
   declarations: [

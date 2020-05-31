@@ -7,7 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },
+   { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },
    { path: 'pessoas', component: PessoasPesquisaComponent },
    { path: 'pessoas/novo', component: PessoaCadastroComponent },
    { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },
