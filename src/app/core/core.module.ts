@@ -1,3 +1,4 @@
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ErrorHandlerService } from './error-handler.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgModule } from '@angular/core';
@@ -11,23 +12,25 @@ import { RouterModule } from '@angular/router';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 
 
-
 @NgModule({
   imports: [
     ToastyModule,
     CommonModule,
-    RouterModule
+    RouterModule,
+    ConfirmDialogModule
 
   ],
   declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
   exports: [NavbarComponent,
-            ToastyModule],
+            ToastyModule,
+            ConfirmDialogModule],
   providers: [
     ErrorHandlerService,
     LancamentoService,
     PessoaService,
     ConfirmationService,
-    CategoriaService
+    CategoriaService,
+    ConfirmationService
   ]
 })
 export class CoreModule { }

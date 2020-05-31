@@ -13,10 +13,8 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
-
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-
 
 
 registerLocaleData(localePt);
@@ -37,8 +35,10 @@ registerLocaleData(localePt);
     AppRoutingModule
 
 
+
   ],
   providers: [
+
 
   ],
   bootstrap: [AppComponent]
