@@ -11,18 +11,18 @@
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>Vencimento</label>
-        <p-calendar dateFormat="dd/mm/yy" [inline]="false"
+        <p-calendar dateFormat="dd/mm/yy" [inline]="false" ngModel #dataVencimento="ngModel" required
         [readonlyInput]="false" [showIcon]="true" [(ngModel)]="lancamento.dataVencimento" name="dataVencimento" ></p-calendar>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid">
         <label>{{tipo.value === 'RECEITA' ? 'Recebimento' : 'Pagamento'}}</label>
         <p-calendar dateFormat="dd/mm/yy" [showIcon]="true" [(ngModel)]="lancamento.dataPagamento"
-         name="dataPagamento"></p-calendar>
+         name="dataPagamento" ></p-calendar>
       </div>
 
       <div class="ui-g-12 ui-md-9 ui-fluid">
-        <label>Descrição {{descricao.errors | json}}</label>
+        <label>Descrição</label>
         <input pInputText type="text" name="descricao"
         ngModel #descricao="ngModel" [(ngModel)]="lancamento.descricao" required minlength="5">
 <!--
@@ -56,7 +56,7 @@
         <label>Observação</label>
         <textarea pInputTextarea  [(ngModel)]="lancamento.observacao" name="obs"></textarea>
       </div>
-    <div class="ui-g-12">
+    <div class="ui-g-12" >
        <button style="margin-right: 15px;" pButton type="submit" label="Salvar"
        [disabled]="!f.valid"></button>
        <button style="margin-right: 15px;" pButton type="button" label="Novo" class="ui-button-info"

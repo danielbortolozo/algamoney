@@ -13,6 +13,7 @@ export class ErrorHandlerService {
 
   handle(errorResponse: any) {
     let msg: string;
+
     if (errorResponse['status'] == 400) {
          const erros: [] = errorResponse['error'];
          for (const erro of erros) {
@@ -20,12 +21,12 @@ export class ErrorHandlerService {
          }
     } else
       if (errorResponse['status'] == 404) {
-          msg = 'Recurso não encontrado';
+          msg = 'Recurso não encontrado. Error 404';
       } else
          if (typeof errorResponse === 'string') {
             msg = errorResponse;
          } else {
-              msg = 'Erro ao processar serviço remoto. Tente novamente mais tarde';
+              msg = 'Erro ao processar serviço remoto. Tente novamente';
            }
 
     this.toasty.error(msg);

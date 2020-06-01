@@ -86,7 +86,7 @@ export class PessoaService {
     // headers.append('Authorization', 'Basic skdfjdkfj');
      return this.http.post(this.pessoasUrl, pessoa)
      .toPromise()
-     .then(response => pessoa);
+     .then(response => response as Pessoa);
 
   }
 
